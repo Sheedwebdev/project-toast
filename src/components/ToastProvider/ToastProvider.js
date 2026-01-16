@@ -3,6 +3,20 @@ import React from 'react';
 export const ToastContext = React.createContext();
 
 function ToastProvider({ children }) {
+  React.useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.code === 'Escape') {
+        setToasts([]);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, []);
+
   const [toasts, setToasts] = React.useState([
     {
       id: crypto.randomUUID(),
