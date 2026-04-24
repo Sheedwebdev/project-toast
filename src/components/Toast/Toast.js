@@ -23,6 +23,17 @@ function Toast({ id, variant, children }) {
   const { dismissToast } = React.useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
 
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      dismissToast(id);
+    }, 3000);
+
+    //Clean Up
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [dismissToast, id]);
+
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>

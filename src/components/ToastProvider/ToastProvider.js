@@ -11,16 +11,16 @@ function ToastProvider({ children }) {
   useKeydown('Escape', handleEscape);
 
   const [toasts, setToasts] = React.useState([
-    {
-      id: crypto.randomUUID(),
-      message: 'It works!',
-      variant: 'success',
-    },
-    {
-      id: crypto.randomUUID(),
-      message: 'Logged in',
-      variant: 'success',
-    },
+    // {
+    //   id: crypto.randomUUID(),
+    //   message: 'It works!',
+    //   variant: 'success',
+    // },
+    // {
+    //   id: crypto.randomUUID(),
+    //   message: 'Logged in',
+    //   variant: 'success',
+    // },
   ]);
 
   function createToast(message, variant) {
