@@ -23,41 +23,19 @@ function Toast({ id, variant, children }) {
   const { dismissToast } = React.useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
 
-  const [isExiting, setIsExiting] = React.useState(false);
-  // Auto dismiss after 3s but trigger animation first
   React.useEffect(() => {
     const timer = setTimeout(() => {
-      setIsExiting(true);
-    }, 10000)
+      dismissToast(id);
+    }, 15000);
 
+    //Clean Up
     return () => {
       clearTimeout(timer);
     }
-  }, []);
-
-  // React.useEffect(() => { 
-  //   requestAnimationFrame(() => {
-
-  //   })
-  // }, []);
-
-  // After animation is over, remove DOM node from the DOM
-  function handleTransitonEnd() {
-    if (isExiting) {
-      dismissToast(id);
-    }
-  }
-
+  }, [dismissToast, id]);
 
   return (
-    <div 
-      className={`
-            ${styles.toast} 
-            ${styles[variant]}
-            ${isExiting ? styles.exit : styles.enter}
-      `}
-      onTransitionEnd={handleTransitonEnd}
-    >
+    <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
         <Icon size={24} />
       </div>
@@ -67,7 +45,7 @@ function Toast({ id, variant, children }) {
       </p>
       <button
         className={styles.closeButton}
-        onClick={() => setIsExiting(true)}
+        onClick={() => dismissToast(id)}
         aria-label='dismiss message'
         aria-live='off'
       >
