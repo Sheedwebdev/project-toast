@@ -10,6 +10,22 @@
   max-width: 100%;
   width: 350px;
   box-shadow: var(--shadow-elevation-medium);
+  /* Base animation setup */
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Slide IN */
+.enter {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Slide OUT */
+.exit {
+  transform: translateX(100%);
+  opacity: 0;
 }
 
 .content {
