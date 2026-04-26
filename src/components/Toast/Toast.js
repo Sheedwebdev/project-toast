@@ -29,7 +29,7 @@ function Toast({ id, variant, children }) {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setIsExiting(true);
-    }, 10000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
