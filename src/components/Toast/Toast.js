@@ -26,7 +26,7 @@ function Toast({ id, variant, children }) {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       dismissToast(id);
-    }, 15000);
+    }, 5000);
 
     //Clean Up
     return () => {
